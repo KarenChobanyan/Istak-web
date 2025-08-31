@@ -1,13 +1,49 @@
+$main_dark:rgba(32,30,30,1);
+$dropdown_bg:#7A7A7A;
 // primary
 $color_primary: #827e78;
 $color_primary_dark: #221c13;
 $color_menu: #231f20;
 // secondary
-$color_secondary: #d5873b;
+$color_secondary: #535353;
 $color_placeholder: #f6f4f1;
 
 @mixin inner() {
   width: 1544px;
   max-width: 100%;
   margin: auto;
+}
+
+@mixin adaptiveText($figmaSize, $designWidth: 1920) {
+  $min: 0; // declare first
+  @if $figmaSize <= 20 {
+    $min: $figmaSize * 0.9;
+  } @else {
+    $min: $figmaSize * 0.7;
+  }
+
+  $max: $figmaSize * 1.2;
+  $vwSize: ($figmaSize / $designWidth) * 100;
+
+  font-size: clamp(#{$min}px, #{$vwSize}vw, #{$max}px);
+}
+
+
+@mixin adaptivePadding($top, $right: null, $bottom: null, $left: null, $designWidth: 1920) {
+  @if $right ==null {
+    $right: $top;
+  }
+
+  @if $bottom ==null {
+    $bottom: $top;
+  }
+
+  @if $left ==null {
+    $left: $right;
+  }
+
+  padding-top: clamp(#{$top*0.7}px, #{($top/$designWidth)*100}vw, #{$top*1.2}px);
+  padding-right: clamp(#{$right*0.7}px, #{($right/$designWidth)*100}vw, #{$right*1.2}px);
+  padding-bottom: clamp(#{$bottom*0.7}px, #{($bottom/$designWidth)*100}vw, #{$bottom*1.2}px);
+  padding-left: clamp(#{$left*0.7}px, #{($left/$designWidth)*100}vw, #{$left*1.2}px);
 }

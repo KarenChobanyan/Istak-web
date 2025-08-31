@@ -14,11 +14,11 @@ export default function Button({
 }) {
   return (
     <button
-      type={ type?type:"button"}
+      type={type ? type : "button"}
       className={`${styles.button} ${variant === 'primary' ? styles.primary : variant === 'secondary' ? styles.secondary : variant === 'light' ? styles.light : styles.default}`}
       onClick={onClick}
     >
-      {text}
+        {text}
     </button>
   );
 }

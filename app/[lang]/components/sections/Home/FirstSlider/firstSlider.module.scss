@@ -25,7 +25,7 @@
   }
 
   .sliderContainer {
-    width: 657px;
+    width: 34.2vw;
 
     .sliderItem {
       display: flex;
@@ -36,7 +36,7 @@
     .heading {
       font-weight: 400;
       font-style: normal;
-      font-size: 70px;
+      @include adaptiveText(70);
       line-height: 100%;
       letter-spacing: 5%;
       text-transform: uppercase;
@@ -47,7 +47,7 @@
     .title {
       font-weight: 400;
       font-style: normal;
-      font-size: 32px;
+      @include adaptiveText(32);
       line-height: 100%;
       letter-spacing: 0%;
       text-transform: capitalize;
@@ -57,8 +57,12 @@
 
     .buttonContainer {
       margin-top: 40px;
-      width: 190px;
-      height: 60px;
+      width: fit-content;
+      // width: 190px;
+      // height: 60px;
+    }
+    button{
+      @include adaptivePadding(20,60)
     }
   }
 

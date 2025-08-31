@@ -8,7 +8,7 @@
   align-items: center;
   font-weight: 400;
   font-style: Regular;
-  font-size: 20px;
+  @include adaptiveText(20);
   line-height: 24px;
   letter-spacing: 1.6%;
   text-transform: uppercase;

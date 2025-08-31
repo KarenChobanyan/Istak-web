@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 188px;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
@@ -12,47 +11,25 @@
   left: 0;
   transition: background-color 0.3s ease;
   z-index: 1000;
-  height: 92px;
+  @include adaptivePadding(0, 20, 0, 100);
   background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
   &.scrolled {
-    background: #221c13;
+    background: $main_dark;
   }
 
   &.darkColor {
-    background: #231F20;
+    background: $main_dark;
   }
 
   // Logo Section
   .logo {
     text-decoration: none;
 
-    .logoText {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      .logoMain {
-        font-family: var(--font-bebas), 'Oswald', sans-serif;
-        font-weight: 700;
-        font-size: 32px;
-        line-height: 1;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .logoSub {
-        font-family: var(--font-mardoto), 'Inter', sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 1;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-top: -2px;
-      }
+    img {
+      width: clamp(80px, 6vw, 137px);
+      height: auto;
     }
   }
 
@@ -62,21 +39,23 @@
     align-items: center;
     gap: 62px;
     position: relative;
+    transform: translateX(-5.2vw);
 
     .navItem {
       position: relative;
+        border: 1px solid transparent;
 
       .navButton {
         background: none;
         border: none;
         font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
         font-weight: 400;
-        font-size: 20px;
+        @include adaptiveText(20);
         line-height: 30px;
+        padding: 20px 0;
         letter-spacing: 2%;
         text-transform: uppercase;
         color: white;
-        padding: 31px 0;
         cursor: pointer;
         transition: color 0.3s ease;
         position: relative;
@@ -93,39 +72,55 @@
       // Dropdown
       .dropdown {
         position: absolute;
-        top: 100%;
+        top: 105%;
         left: 50%;
-        transform: translateX(-50%);
-        background: #7A7A7A;
-        // background: #2a2a2a;
-        // border-radius: 8px;
-        // padding: 16px 0;
+        transform: translateX(-50%) scaleY(0);
+        transform-origin: top center;
+        background: $dropdown_bg;
         min-width: 160px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         z-index: 1001;
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
 
         .dropdownItem {
           display: block;
           text-decoration: none;
           padding: 8px 20px;
           color: white;
-          line-height: 24px;
-          transition: background-color 0.3s ease;
+          line-height: 30px;
           position: relative;
           font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
           font-weight: 400;
           font-style: Regular;
-          font-size: 20px;
-          line-height: 30px;
+          @include adaptiveText(20);
           letter-spacing: 2%;
           text-transform: uppercase;
+          overflow: hidden;
+          cursor: pointer;
 
-          &:hover {
-            background-color: $color_primary_dark;
+          // background layer for hover animation
+          &::before {
+            content: "";
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0; // start from right
+            width: 0;
+            height: 100%;
+            background: $color_primary_dark;
+            z-index: -1; // behind text
+            transition: width 0.4s ease;
+          }
+
+          &:hover::before {
+            width: 100%;
           }
 
           .dropdownText {
-            display: block;
+            position: relative;
+            z-index: 1; // keep text above background
           }
 
           .dropdownHighlight {
@@ -134,13 +129,15 @@
             right: 0;
             bottom: 0;
             height: 1px;
-            background: $color_secondary;
+            background: white;
             opacity: 0;
-            transition: opacity 0.3s ease;
+             transition: width 0.4s ease;
+            width: 0;
           }
 
           &:hover .dropdownHighlight {
             opacity: 1;
+            width: 100%;
           }
 
           &:first-child .dropdownHighlight {
@@ -152,25 +149,45 @@
           }
         }
 
+        // active state: full background, no hover
         .active {
-          background-color: $color_primary_dark;
-        }
+          &::before {
+            left: 0;
+            right: auto;
+            width: 100%;
+          }
 
-        .active .dropdownHighlight {
-          opacity: 1;
+          .dropdownText {
+            color: $color_secondary; // keep text visible
+          }
+
+          .dropdownHighlight {
+            opacity: 1;
+          }
+
+          &:hover::before {
+            width: 100%; // prevent hover animation
+          }
         }
       }
     }
 
+    .dropdown.open {
+      transform: translateX(-50%) scaleY(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+
+
     .navLink {
       font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
       font-weight: 400;
-      font-size: 20px;
+      @include adaptiveText(20);
       line-height: 30px;
       letter-spacing: 2%;
       text-transform: uppercase;
       color: white;
-      padding: 30px 0;
       text-decoration: none;
       transition: color 0.3s ease;
       position: relative;
@@ -186,6 +203,13 @@
   }
 
   // Right Section
+
+  .divider {
+    width: 1px;
+    height: 33px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
   .rightSection {
     display: flex;
     align-items: center;
@@ -206,6 +230,10 @@
       img {
         filter: brightness(0) invert(1);
       }
+    }
+
+    .langSwitcher {
+      padding: 20px 0;
     }
 
     .cartIcon {
@@ -280,9 +308,19 @@
       }
 
       button {
-        width: 237px;
-        height: 52px;
+        @include adaptiveText(16);
+        line-height: 20px;
+        letter-spacing: 1.6%;
+        @include adaptivePadding(14, 40);
         font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        transition: 0.2s ease-out;
+
+        &:hover {
+          transform: scale(1.02);
+        }
       }
     }
   }

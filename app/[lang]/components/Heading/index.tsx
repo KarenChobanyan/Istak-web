@@ -9,6 +9,7 @@ import { useAuthStore } from '@/app/zustand/store/auth';
 import { useCartStore } from '@/app/zustand/store/cart';
 import React from 'react';
 import queryString from 'query-string';
+import LanguageSwitcher from '../LangSwitcher';
 
 export default function Heading() {
   const dictionary = useDictionary();
@@ -97,8 +98,7 @@ export default function Heading() {
           </button>
 
           {/* Products Dropdown */}
-          {isProductsDropdownOpen && (
-            <div className={styles.dropdown}
+            <div className={`${styles.dropdown} ${isProductsDropdownOpen ? styles.open : ''}`}
 
             >
               <Link href={`/${lang}/products?category=gin`} className={`${styles.dropdownItem} ${selectedCategory === 'gin' ? styles.active : ''}`}>
@@ -118,7 +118,6 @@ export default function Heading() {
                 <div className={styles.dropdownHighlight}></div>
               </Link>
             </div>
-          )}
         </div>
 
         <Link
@@ -134,15 +133,22 @@ export default function Heading() {
         >
           {dictionary.navigation.subscription}
         </Link>
+        <Link
+          className={styles.navLink}
+          href={`/${lang}/subscription`}
+        >
+          {dictionary.navigation.about}
+        </Link>
       </nav>
 
       {/* Right Section - Icons and Auth */}
       <div className={styles.rightSection}>
+        <div className={styles.divider} />
         {/* Search Icon */}
         {/* <button className={styles.iconButton}>
           <img src="/img/svg/search.svg" alt={dictionary.navigation.search} width={20} height={20} />
         </button> */}
-
+        <LanguageSwitcher boxStyles={styles.langSwitcher}/>
         {/* Cart Icon */}
         <Link href={`/${lang}/cart`} className={styles.cartIcon}>
           <img src="/img/svg/cart.svg" alt={dictionary.navigation.cart} width={20} height={20} />
@@ -163,7 +169,7 @@ export default function Heading() {
           <div className={styles.authButton}>
             <Link href={`/${lang}/login`}>
               <Button
-                text={`${dictionary.navigation.login} / ${dictionary.navigation.register}`}
+                text={`${dictionary.navigation.login}`}
                 variant="light"
                 onClick={() => { }}
               />
