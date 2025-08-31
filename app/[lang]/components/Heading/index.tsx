@@ -76,10 +76,6 @@ export default function Heading() {
       {/* Logo */}
       <Link href={`/${lang}`} className={styles.logo}>
         <img src="/img/svg/logo.svg" alt="logo" />
-        {/* <div className={styles.logoText}>
-          <span className={styles.logoMain}>ISTAK</span>
-          <span className={styles.logoSub}>DISTILLERY</span>
-        </div> */}
       </Link>
 
       {/* Navigation */}

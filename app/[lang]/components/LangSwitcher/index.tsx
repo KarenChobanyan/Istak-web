@@ -48,6 +48,10 @@ const LanguageSwitcher: React.FC<IProps> = ({ boxStyles }) => {
                             }`}
                     >
                         <span>{lang}</span>
+                        {currentLang !== lang
+                            &&
+                            <div className={styles.dropdownHighlight}></div>
+                        }
                     </li>
                 ))}
             </ul>

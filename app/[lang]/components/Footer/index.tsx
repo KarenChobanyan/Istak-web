@@ -1,143 +1,52 @@
 'use client';
 import { useDictionary } from '@/dictionary-provider';
 import styles from './footer.module.scss';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+
 
 export default function Footer() {
   const dictionary = useDictionary();
+  const { lang } = useParams();
+
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerContent}>
-        {/* Logo Section */}
-        <div className={styles.logoSection}>
+      <div className={styles.firstSection}>
+        <Link href={`/${lang}`} className={styles.logo}>
           <img src="/img/svg/logo.svg" alt="logo" />
-          {/* <div className={styles.logo}>{dictionary.footer.istak.title}</div>
-          <div className={styles.subtitle}>{dictionary.footer.istak.subtitle}</div> */}
-        </div>
-
-        {/* ISTAK Products */}
-        <div className={styles.productSection}>
-          <h3>{dictionary.footer.istak.title}</h3>
-          <ul>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.istak.products.barlieMalt}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.istak.products.wheatMalt}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.istak.products.maltMix}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.istak.products.nightLife}
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* 202 GIN FAMILY */}
-        <div className={styles.productSection}>
-          <h3>{dictionary.footer.ginFamily.title}</h3>
-          <ul>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.ginFamily.barEdition}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.ginFamily.dryGin}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.ginFamily.mandarin}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.ginFamily.christmasEdition}
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* SHARLIE FAMILY */}
-        <div className={styles.productSection}>
-          <h3>{dictionary.footer.sharlieFamily.title}</h3>
-          <ul>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.sharlieFamily.sharlieXO}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.sharlieFamily.sharlieVSOP}
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* News Section */}
-        <div className={styles.newsSection}>
-          <h3> </h3>
-          <ul>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.news.title}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.news.opinions}
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.linkButton}>
-                {dictionary.footer.news.community}
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Contact Section */}
+        </Link>
         <div className={styles.contactSection}>
-          <h3>{dictionary.footer.contact.title}</h3>
-          <div className={`${styles.address}`}>{dictionary.footer.contact.address}</div>
+          <div className={styles.contactItem}>
+            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.51481 10.6467H4.61789C4.50285 10.6468 4.39033 10.6805 4.29423 10.7437C4.19812 10.8069 4.12265 10.8969 4.07711 11.0026L1.59422 16.784L7.49082 13.7724C6.78496 12.7956 6.08652 11.7184 5.51481 10.6467ZM16.9227 11.0026C16.8772 10.897 16.8018 10.807 16.7057 10.7437C16.6096 10.6805 16.4971 10.6468 16.3821 10.6467H15.4852C14.4055 12.6701 12.8325 14.761 11.8318 15.9113C11.128 16.7185 9.87102 16.7176 9.16836 15.9113C9.09649 15.8288 8.72129 15.3944 8.20445 14.7263L7.14141 15.2696L11.1627 19.2831L18.7823 15.3329L16.9227 11.0026ZM0.86879 18.4736L0.548087 19.2205C0.382032 19.607 0.666407 20.0387 1.08867 20.0387H9.72344C9.77746 19.9986 9.77809 20.001 10.068 19.8507L6.04078 15.8319L0.86879 18.4736ZM20.452 19.2205L19.2471 16.4151L12.2573 20.0387H19.9113C20.3326 20.0387 20.6182 19.6078 20.452 19.2205ZM11.0882 5.32479C11.0882 5.001 10.8243 4.73779 10.5 4.73779C10.1756 4.73779 9.91176 5.001 9.91176 5.32479C9.91176 5.64842 10.1756 5.91182 10.5 5.91182C10.8242 5.91182 11.0882 5.64842 11.0882 5.32479Z" fill="white" />
+              <path d="M10.9438 15.1022C11.1418 14.8749 15.7938 9.49373 15.7938 5.79471C15.7938 -1.83287 5.20605 -1.92596 5.20605 5.79471C5.20605 9.49373 9.85801 14.8749 10.0561 15.1022C10.2906 15.3713 10.7097 15.371 10.9438 15.1022ZM8.73523 5.32518C8.73523 4.35408 9.52688 3.56416 10.4999 3.56416C11.4728 3.56416 12.2645 4.35412 12.2645 5.32518C12.2645 6.29611 11.4728 7.08603 10.4999 7.08603C9.52688 7.08603 8.73523 6.29611 8.73523 5.32518Z" fill="white" />
+            </svg>
 
-          <div className={styles.contactInfo}>
-
-            <div className={styles.contactItem}>
-              <svg className={styles.icon} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-              </svg>
-              <a href={`mailto:${dictionary.footer.contact.email}`} className={styles.text}>
-                {dictionary.footer.contact.email}
-              </a>
-            </div>
-            <div className={styles.contactItem}>
-              <svg className={styles.icon} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-              </svg>
-              <a href={`tel:${dictionary.footer.contact.phone}`} className={styles.text}>
-                {dictionary.footer.contact.phone}
-              </a>
-            </div>
+            <p className={styles.text}>{dictionary.footer.contact.address}</p>
           </div>
-        </div>
-      </div>
+          <div className={styles.contactDevider} />
+          <div className={styles.contactItem}>
+            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.1714 10.2536C11.6739 10.5853 11.0959 10.7606 10.5 10.7606C9.90414 10.7606 9.32617 10.5853 8.82859 10.2536L0.633164 4.78977C0.587922 4.75952 0.543517 4.72803 0.5 4.69535L0.5 13.6484C0.5 14.6748 1.33301 15.4895 2.34113 15.4895H18.6588C19.6853 15.4895 20.5 14.6565 20.5 13.6484V4.69531C20.4564 4.72808 20.4119 4.75963 20.3665 4.78992L12.1714 10.2536Z" fill="white" />
+              <path d="M1.2832 3.81463L9.47863 9.27846C9.78887 9.48529 10.1444 9.58869 10.5 9.58869C10.8555 9.58869 11.2111 9.48525 11.5214 9.27846L19.7168 3.81463C20.2072 3.48787 20.5 2.941 20.5 2.35076C20.5 1.33588 19.6743 0.510254 18.6595 0.510254H2.34051C1.32567 0.510293 0.500001 1.33592 0.500001 2.35174C0.499697 2.64127 0.571056 2.92638 0.707714 3.18163C0.844372 3.43689 1.04208 3.65435 1.2832 3.81463Z" fill="white" />
+            </svg>
 
-      {/* Footer Bottom */}
-      <div className={styles.footerBottom}>
-        <div className={styles.copyright}>{dictionary.footer.copyright}</div>
+            <a href={`mailto:${dictionary.footer.contact.email}`} className={styles.text}>
+              {dictionary.footer.contact.email}
+            </a>
+          </div>
+          <div className={styles.contactDevider} />
+          <div className={styles.contactItem}>
+            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0C16.0229 0 20.5 4.47715 20.5 10C20.5 15.5229 16.0229 20 10.5 20C4.97715 20 0.5 15.5229 0.5 10C0.5 4.47715 4.97715 0 10.5 0ZM16.3711 14.6264C16.514 14.4828 16.5942 14.2884 16.5942 14.0858C16.5942 13.8832 16.514 13.6889 16.3711 13.5452L14.4136 11.5882C14.2699 11.4452 14.0755 11.365 13.8728 11.365C13.6701 11.365 13.4757 11.4452 13.332 11.5882L12.8001 12.1204C12.6234 12.2985 12.394 12.4148 12.1459 12.4519C11.8978 12.4891 11.6444 12.4451 11.4233 12.3266C10.0391 11.5934 8.90694 10.4614 8.17359 9.07723C8.055 8.85611 8.01098 8.60262 8.04807 8.35447C8.08516 8.10631 8.20139 7.87677 8.37945 7.7L8.91238 7.16797C9.05527 7.02428 9.13548 6.82988 9.13548 6.62725C9.13548 6.42461 9.05527 6.23021 8.91238 6.08652L6.95492 4.12969C6.81124 3.98671 6.61678 3.90645 6.41408 3.90645C6.21138 3.90645 6.01693 3.98671 5.87324 4.12969C5.79234 4.21035 5.69 4.30781 5.58055 4.41094C5.30684 4.66965 4.96535 4.99164 4.8273 5.19406C4.10023 6.25809 4.44891 7.6816 4.86777 8.68855C5.42109 10.0158 6.44086 11.462 7.74027 12.7605C9.03852 14.0589 10.4843 15.0787 11.8122 15.6321C12.8189 16.0515 14.2419 16.3993 15.3059 15.6724C15.5082 15.5343 15.8307 15.1936 16.0889 14.9195C16.1924 14.8103 16.29 14.707 16.3711 14.6264Z" fill="white" />
+            </svg>
+            <a href={`tel:${dictionary.footer.contact.phone}`} className={styles.text}>
+              {dictionary.footer.contact.phone}
+            </a>
+          </div>
+
+        </div>
         <div className={styles.socialIcons}>
           <div className={styles.socialIcon}>
             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -150,9 +59,10 @@ export default function Footer() {
             </svg>
           </div>
           <div className={styles.socialIcon}>
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z" />
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.0864 10.0865H8.33231V7.33956C8.33231 6.68448 8.32064 5.84156 7.41998 5.84156C6.50648 5.84156 6.36648 6.55498 6.36648 7.29231V10.0865H4.61299V4.43748H6.29706V5.20923H6.3204C6.66398 4.6224 7.30214 4.27182 7.98172 4.2969C9.75972 4.2969 10.087 5.46648 10.087 6.98722L10.0864 10.0865ZM2.63374 3.66515C2.07141 3.66515 1.61583 3.20957 1.61583 2.64724C1.61583 2.08491 2.07141 1.62932 2.63374 1.62932C3.19607 1.62932 3.65166 2.08491 3.65166 2.64724C3.65166 3.20957 3.19607 3.66515 2.63374 3.66515ZM3.51049 10.0865H1.75466V4.43748H3.51049V10.0865ZM10.9608 0.00066301H0.873247C0.396665 -0.00458697 0.00583331 0.377495 0 0.854077V10.983C0.00583331 11.4602 0.396665 11.8423 0.873247 11.837H10.9608C11.4385 11.8429 11.8311 11.4608 11.8375 10.983V0.853494C11.8305 0.375745 11.438 -0.00633699 10.9608 7.96512e-05" fill="white" />
             </svg>
+
           </div>
           <div className={styles.socialIcon}>
             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -160,6 +70,9 @@ export default function Footer() {
             </svg>
           </div>
         </div>
+      </div>
+      <div className={styles.secondBox}>
+        <div className={styles.copyright}>{dictionary.footer.copyright}</div>
       </div>
     </footer>
   );

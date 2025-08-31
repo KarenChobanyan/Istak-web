@@ -28,8 +28,8 @@
     text-decoration: none;
 
     img {
-      width: clamp(80px, 6vw, 137px);
-      height: auto;
+      width: 114px;
+      height: 52;
     }
   }
 
@@ -138,10 +138,6 @@
           &:hover .dropdownHighlight {
             opacity: 1;
             width: 100%;
-          }
-
-          &:first-child .dropdownHighlight {
-            top: 0;
           }
 
           &:last-child .dropdownHighlight {
