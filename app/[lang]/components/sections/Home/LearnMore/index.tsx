@@ -5,6 +5,7 @@ import styles from './learnMore.module.scss';
 import Button from '../../../Button';
 import { useParams, useRouter } from 'next/navigation';
 
+
 function LearnMore() {
   const router = useRouter();
   const { lang } = useParams();
